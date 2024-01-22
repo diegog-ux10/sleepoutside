@@ -1,9 +1,9 @@
-import { getLocalStorage } from "./utils.mjs";
+import { getLocalStorage } from './utils.mjs';
 
 function renderCartContents() {
-  const cartItems = getLocalStorage("so-cart") || [];
+  const cartItems = getLocalStorage('so-cart') || [];
   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
-  document.querySelector(".product-list").innerHTML = htmlItems.join("");
+  document.querySelector('.product-list').innerHTML = htmlItems.join('');
 }
 
 function cartItemTemplate(item) {
@@ -26,3 +26,31 @@ function cartItemTemplate(item) {
 }
 
 renderCartContents();
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Check if there are any cart items in local storage
+  let cartItems = JSON.parse(localStorage.getItem('so-cart')) || [];
+
+  if (cartItems.length > 0) {
+      // Show the cart footer
+      let cartFooter = document.querySelector('.cart-footer');
+      cartFooter.classList.remove('hide');
+
+      // Calculate the total amount
+      let totalAmount = calculateTotal(cartItems);
+
+      // Insert the total amount into the HTML element
+      let totalElement = document.getElementById('totalAmount');
+      totalElement.innerText = 'Total: $' + totalAmount.toFixed(2);
+  }
+});
+
+function calculateTotal(cartItems) {
+  // Implement logic to calculate the total amount
+  // For example, iterate through cartItems and sum up the prices
+  let total = 0;
+  for (let i = 0; i < cartItems.length; i++) {
+      total += cartItems[i].ListPrice;
+  }
+  return total;
+}
