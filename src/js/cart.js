@@ -1,24 +1,4 @@
-import { getLocalStorage, setLocalStorage } from "./utils.mjs";
-
-// function renderCartContents() {
-//   const cartItems = getLocalStorage('so-cart') || [];
-//   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
-//   document.querySelector('.product-list').innerHTML = htmlItems.join('');
-
-//   if (cartItems.length > 0) {
-//     // Show the cart footer
-//     let cartFooter = document.querySelector('.cart-footer');
-//     cartFooter.classList.remove('hide');
-
-//     // Calculate the total amount
-//     let totalAmount = calculateTotal(cartItems);
-
-//     // Insert the total amount into the HTML element
-//     let totalElement = document.getElementById('totalAmount');
-//     totalElement.innerText = 'Total: $' + totalAmount.toFixed(2);
-// }
-
-// }
+import { getLocalStorage, setLocalStorage } from './utils.mjs';
 
 function cartItemTemplate(item) {
   const newItem = `<li class="cart-card divider">
@@ -41,8 +21,6 @@ function cartItemTemplate(item) {
 }
 
 function calculateTotal(cartItems) {
-  // Implement logic to calculate the total amount
-  // For example, iterate through cartItems and sum up the prices
   let total = 0;
   for (let i = 0; i < cartItems.length; i++) {
     total += cartItems[i].ListPrice;
@@ -51,37 +29,37 @@ function calculateTotal(cartItems) {
 }
 
 function renderCartContents() {
-  const cartItems = getLocalStorage("so-cart") || [];
+  const cartItems = getLocalStorage('so-cart') || [];
   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
-  const productList = document.querySelector(".product-list");
+  const productList = document.querySelector('.product-list');
 
-  productList.innerHTML = htmlItems.join("");
+  productList.innerHTML = htmlItems.join('');
 
   if (cartItems.length > 0) {
-    let cartFooter = document.querySelector(".cart-footer");
-    cartFooter.classList.remove("hide");
+    let cartFooter = document.querySelector('.cart-footer');
+    cartFooter.classList.remove('hide');
 
     let totalAmount = calculateTotal(cartItems);
 
-    let totalElement = document.getElementById("totalAmount");
-    totalElement.innerText = "Total: $" + totalAmount.toFixed(2);
+    let totalElement = document.getElementById('totalAmount');
+    totalElement.innerText = 'Total: $' + totalAmount.toFixed(2);
 
-    const removeButtons = document.querySelectorAll(".remove-item");
+    const removeButtons = document.querySelectorAll('.remove-item');
     removeButtons.forEach((button) => {
-      button.addEventListener("click", removeFromCart);
+      button.addEventListener('click', removeFromCart);
     });
   }
 }
 
 function removeFromCart(event) {
   const productIdToRemove = event.target.dataset.id;
-  const updatedCart = getLocalStorage("so-cart").filter(
+  const updatedCart = getLocalStorage('so-cart').filter(
     (product) => product.Id !== productIdToRemove
   );
 
-  setLocalStorage("so-cart", updatedCart);
+  setLocalStorage('so-cart', updatedCart);
 
   location.reload();
 }
+
 renderCartContents();
-// }
