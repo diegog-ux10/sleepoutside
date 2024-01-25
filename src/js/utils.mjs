@@ -41,7 +41,7 @@ export function renderListWithTemplate(
   const htmlStrings = list.map(templateFn);
 
   if (clear) {
-    parentElement.innerHTML = ''; // Clear the content if clear is true
+    parentElement.innerHTML = '';
   }
 
   parentElement.insertAdjacentHTML(position, htmlStrings.join(''));
@@ -51,6 +51,7 @@ function renderWithTemplate(
   templateFn,
   parentElement,
   data,
+  callback = null,
   position = 'afterbegin',
   clear = false
 ) {
@@ -61,7 +62,7 @@ function renderWithTemplate(
     callback(data);
   }
 
-  const htmlStrings = list.map(templateFn);
+  const htmlStrings = data.map(templateFn);
   parentElement.insertAdjacentHTML(position, htmlStrings.join(''));
 }
 
@@ -73,7 +74,7 @@ export async function convertToText(response) {
   return response.text();
 }
 
-export async function loadTemplate(path){
+export async function loadTemplate(path) {
   const html = await fetch(path).then(convertToText);
   const template = document.createElement('template');
   template.innerHTML = html;
@@ -81,15 +82,26 @@ export async function loadTemplate(path){
 }
 
 export async function loadHeaderFooter() {
-  const headerTemplate = await loadTemplate('../public/partials/header.html');
-  const footerTemplate = await loadTemplate('../public/partials/footer.html')
+  // Load header template
+  const headerTemplatePath = '../public/partials/header.html';
+  const headerTemplate = await loadTemplate(headerTemplatePath);
 
-  const headerElement = headerTemplate.content.cloneNode(true)
-  const footerElement = footerTemplate.content.cloneNode(true)
+  // Load footer template
+  const footerTemplatePath = '../public/partials/footer.html';
+  const footerTemplate = await loadTemplate(footerTemplatePath);
 
-  const headerParent = document.getElementById('main-header')
-  const footerParent = document.getElementById('footer')
+  // Render header and footer
+  const headerElement = headerTemplate.content.cloneNode(true);
+  const footerElement = footerTemplate.content.cloneNode(true);
 
-  headerParent.appendChild(headerElement)
-  footerParent.appendChild(footerElement)
+  const headerParent = document.getElementById('main-header');
+  const footerParent = document.getElementById('footer');
+
+  // Append the cloned nodes to the parent containers
+  headerParent.appendChild(headerElement);
+  footerParent.appendChild(footerElement);
+
+  // Optionally, you can call renderWithTemplate here if needed
+  // renderWithTemplate(headerTemplate, headerElement);
+  // renderWithTemplate(footerTemplate, footerElement);
 }
