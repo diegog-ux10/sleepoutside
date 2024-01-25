@@ -1,3 +1,4 @@
+import { renderListWithTemplate } from "./utils.mjs";
 
 
 function productCardTemplate(product) {
@@ -13,7 +14,7 @@ function productCardTemplate(product) {
   </li>`;
   }
 
-export default class ProductListing {
+export default class ProductList {
     constructor(category, dataSource, listElement) {
       // We passed in this information to make our class as reusable as possible.
       // Being able to define these things when we use the class will make it very flexible
@@ -25,12 +26,25 @@ export default class ProductListing {
     async init() {
       // our dataSource will return a Promise...so we can use await to resolve it.
       const list = await this.dataSource.getData();
-      // render the list - to be completed
+      // render the list
+      this.renderList(list);
     }
 
     // render before doing the stretch
-  renderList(list) {
-    const htmlStrings = list.map(productCardTemplate);
-    this.listElement.insertAdjacentHTML("afterbegin", htmlStrings.join(""));
-  }
+    // renderList(list) {
+    //   const htmlStrings = list.map(productCardTemplate);
+    //   this.listElement.insertAdjacentHTML("afterbegin", htmlStrings.join(""));
+    // }
+
+    // render after doing the first stretch
+   
+    renderList(list) {
+      renderListWithTemplate(productCardTemplate, this.listElement, list);
+    }
+
+    filterTents(list) {
+      return list.filter((product) => product).slice(0, 4);
+    }
+  
+    
 }
