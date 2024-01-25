@@ -46,3 +46,32 @@ export function renderListWithTemplate(
 
   parentElement.insertAdjacentHTML(position, htmlStrings.join(''));
 }
+
+function renderWithTemplate(
+  templateFn,
+  parentElement,
+  data,
+  position = 'afterbegin',
+  clear = false
+) {
+  if (clear) {
+    parentElement.innerHTML = ''; // Clear the content if clear is true
+  }
+  if(callback){
+    callback(data);
+  }
+
+  const htmlStrings = list.map(templateFn);
+  parentElement.insertAdjacentHTML(position, htmlStrings.join(''));
+}
+
+export async function loadTemplate(path){
+  const html = await fetch(path).then(convertToText);
+  const template = document.createElement('template');
+  template.innerHTML = html;
+  return template;
+}
+
+function loadHeaderFooter(){
+
+}
