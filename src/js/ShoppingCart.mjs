@@ -1,5 +1,5 @@
 // ShoppingCart.mjs
-
+/* THE FOLLOWING IS FROM main BRANCH 
 import { loadTemplate } from './utils.mjs'; // Import your template-related functions
 
 export default class ShoppingCart {
@@ -49,4 +49,38 @@ export default class ShoppingCart {
   }
 
   // Add other methods for updating, adding, and removing items from the cart
+}
+*/
+import { getLocalStorage } from "../utils.mjs";
+
+function cartItemTemplate(item) {
+  const newItem = `<li class="cart-card divider">
+    <a href="#" class="cart-card__image">
+      <img
+        src="${item.Image}"
+        alt="${item.Name}"
+      />
+    </a>
+    <a href="#">
+      <h2 class="card__name">${item.Name}</h2>
+    </a>
+    <p class="cart-card__color">${item.Colors[0].ColorName}</p>
+    <p class="cart-card__quantity">qty: 1</p>
+    <p class="cart-card__price">$${item.FinalPrice}</p>
+    <button class="remove-item" data-id="${item.Id}">X</button>
+  </li>`;
+
+  return newItem;
+}
+
+export default class ShoppingCart {
+  constructor(key, parentSelector) {
+    this.key = key;
+    this.parentSelector = parentSelector;
+  }
+  renderCartContents() {
+    const cartItems = getLocalStorage(this.key);
+    const htmlItems = cartItems.map((item) => cartItemTemplate(item));
+    document.querySelector(this.parentSelector).innerHTML = htmlItems.join("");
+  }
 }

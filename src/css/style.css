@@ -243,3 +243,34 @@ footer {
   color: #ff0000; /* You can choose your preferred color */
   margin-left: 5px; /* Adjust spacing as needed */
 }
+
+.categories {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.product-grid {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+}
+
+.product-grid li {
+  flex: 1;
+  text-align: center;
+  margin: 0 10px; /* Adjust as needed for spacing between items */
+}
+
+.product-grid a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.product-grid img {
+  max-width: 100%;
+  height: auto;
+  max-height: 80px; /* Adjust as needed */
+  margin-bottom: 10px; /* Adjust as needed for spacing between image and text */
+}
