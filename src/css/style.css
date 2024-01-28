@@ -220,3 +220,26 @@ footer {
   font-size: var(--small-font);
   padding: 1em;
 }
+
+.hide {
+  display: none;
+}
+
+.cart-footer {
+  /* Add styling for the cart footer */
+  background-color: #f2f2f2;
+  padding: 10px;
+  text-align: right;
+}
+
+.cart-total {
+  /* Add styling for the cart total text */
+  font-weight: bold;
+  margin: 0;
+}
+
+#totalAmount {
+  /* Add styling for the total amount */
+  color: #ff0000; /* You can choose your preferred color */
+  margin-left: 5px; /* Adjust spacing as needed */
+}
