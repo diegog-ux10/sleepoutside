@@ -46,27 +46,6 @@ export function setClick(selector, callback) {
   qs(selector).addEventListener("click", callback);
 }
 
-export function renderListWithTemplate(
-  templateFn,
-  parentElement,
-  list,
-  position = "afterbegin",
-  clear = false
-) {
-  const htmlStrings = list.map(templateFn);
-
-  if (clear) {
-    parentElement.innerHTML = "";
-  }
-}
-
-export function renderWithTemplate(template, parent, data, callback) {
-  parentElement.insertAdjacentHTML("afterbegin", template);
-  if (callback) {
-    callback(data);
-  }
-}
-
 export async function loadHeaderFooter() {
   const headerTemplate = await loadTemplate("../partials/header.html");
   const headerElement = document.querySelector("#header");
@@ -78,29 +57,17 @@ export async function loadHeaderFooter() {
 }
 
 export async function loadTemplate(path) {
-  const html = await fetch(path).then(convertToText);
-  const template = document.createElement("template");
-  template.innerHTML = html;
+  const res = await fetch(path);
+  const template = await res.text();
   return template;
 }
 
-function renderWithTemplate(
-  templateFn,
-  parentElement,
-  data,
-  callback = null,
-  position = "afterbegin",
-  clear = false
-) {
-  if (clear) {
-    parentElement.innerHTML = ""; // Clear the content if clear is true
-  }
+export function renderWithTemplate(template, parentElement, data, callback) {
+  parentElement.insertAdjacentHTML("afterbegin", template);
+  //if there is a callback...call it and pass data
   if (callback) {
     callback(data);
   }
-
-  const htmlStrings = data.map(templateFn);
-  parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
 }
 
 export async function convertToText(response) {
@@ -109,36 +76,4 @@ export async function convertToText(response) {
   }
 
   return response.text();
-}
-
-export async function loadTemplate(path) {
-  const html = await fetch(path).then(convertToText);
-  const template = document.createElement("template");
-  template.innerHTML = html;
-  return template;
-}
-
-export async function loadHeaderFooter() {
-  // Load header template
-  const headerTemplatePath = "../public/partials/header.html";
-  const headerTemplate = await loadTemplate(headerTemplatePath);
-
-  // Load footer template
-  const footerTemplatePath = "../public/partials/footer.html";
-  const footerTemplate = await loadTemplate(footerTemplatePath);
-
-  // Render header and footer
-  const headerElement = headerTemplate.content.cloneNode(true);
-  const footerElement = footerTemplate.content.cloneNode(true);
-
-  const headerParent = document.getElementById("main-header");
-  const footerParent = document.getElementById("footer");
-
-  // Append the cloned nodes to the parent containers
-  headerParent.appendChild(headerElement);
-  footerParent.appendChild(footerElement);
-
-  // Optionally, you can call renderWithTemplate here if needed
-  // renderWithTemplate(headerTemplate, headerElement);
-  // renderWithTemplate(footerTemplate, footerElement);
 }

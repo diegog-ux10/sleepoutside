@@ -1,5 +1,5 @@
 // ShoppingCart.mjs
-/* THE FOLLOWING IS FROM main BRANCH 
+/* THE FOLLOWING IS FROM main BRANCH */
 import { loadTemplate } from './utils.mjs'; // Import your template-related functions
 
 export default class ShoppingCart {
@@ -13,8 +13,9 @@ export default class ShoppingCart {
   }
 
   async renderCart() {
-    const cartTemplatePath = '../public/partials/cart-item-template.html'; // Replace with the actual path
-    const cartTemplate = await loadTemplate(cartTemplatePath);
+    const cartTemplatePath = '/partials/cart-item-template.html'; // Replace with the actual path
+    return;
+    //const cartTemplate = await loadTemplate(cartTemplatePath);
 
     this.cartContainer.innerHTML = '';
 
@@ -50,8 +51,8 @@ export default class ShoppingCart {
 
   // Add other methods for updating, adding, and removing items from the cart
 }
-*/
-import { getLocalStorage } from "../utils.mjs";
+/*
+import { getLocalStorage } from "./utils.mjs";
 
 function cartItemTemplate(item) {
   const newItem = `<li class="cart-card divider">
@@ -78,9 +79,15 @@ export default class ShoppingCart {
     this.key = key;
     this.parentSelector = parentSelector;
   }
+
   renderCartContents() {
-    const cartItems = getLocalStorage(this.key);
+    const cartItems = getLocalStorage(this.key) || [];
     const htmlItems = cartItems.map((item) => cartItemTemplate(item));
     document.querySelector(this.parentSelector).innerHTML = htmlItems.join("");
   }
+
+  async init() {
+    await this.renderCartContents();
+  }
 }
+*/

@@ -19,8 +19,8 @@ export default class ProductData {
   //     .then((data) => data);
 
   async getData(category) {
-    console.log(baseURL + `produts/search/${category}`);
-    const response = await fetch(baseURL + `produts/search/${category}`);
+    console.log(baseURL + `products/search/${category}`);
+    const response = await fetch(baseURL + `products/search/${category}`);
     
     const data = await convertToJson(response);
     console.log(data);
