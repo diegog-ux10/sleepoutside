@@ -7,4 +7,6 @@ const element = document.querySelector('.product-list');
 const listing = new ProductList('Tents', dataSource, element);
 
 listing.init();
-loadHeaderFooter();
+document.addEventListener('DOMContentLoaded', async () => {
+  await loadHeaderFooter();
+});
