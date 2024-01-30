@@ -58,7 +58,7 @@ function renderWithTemplate(
   if (clear) {
     parentElement.innerHTML = ''; // Clear the content if clear is true
   }
-  if(callback){
+  if (callback) {
     callback(data);
   }
 
@@ -67,8 +67,8 @@ function renderWithTemplate(
 }
 
 export async function convertToText(response) {
-  if(!response.ok) {
-    throw new Error('fail')
+  if (!response.ok) {
+    throw new Error('fail');
   }
 
   return response.text();
@@ -104,4 +104,23 @@ export async function loadHeaderFooter() {
   // Optionally, you can call renderWithTemplate here if needed
   // renderWithTemplate(headerTemplate, headerElement);
   // renderWithTemplate(footerTemplate, footerElement);
+  updateCartItemCount();
+}
+
+function updateCartItemCount() {
+  const cartItemCountElement = document.getElementById('cartItemCount');
+
+  // Retrieve the count of items from localStorage
+  const cartItems = JSON.parse(localStorage.getItem('so-cart')) || [];
+  const itemCount = cartItems.length;
+
+  // Update the cart item count in the span
+  cartItemCountElement.textContent = itemCount;
+
+  // Optionally, you can add logic to show/hide the count based on whether there are items in the cart
+  if (itemCount > 0) {
+    cartItemCountElement.style.display = 'inline'; // Show the count
+  } else {
+    cartItemCountElement.style.display = 'none'; // Hide the count when there are no items
+  }
 }
