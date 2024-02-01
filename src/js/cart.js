@@ -7,3 +7,5 @@ const shoppingCart = new ShoppingCart(cartContainer, cartItems);
 
 loadHeaderFooter();
 shoppingCart.init();
+
+
