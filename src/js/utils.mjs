@@ -95,7 +95,7 @@ export async function loadHeaderFooter() {
   const footerElement = footerTemplate.content.cloneNode(true);
 
   const headerParent = document.getElementById('main-header');
-  const footerParent = document.getElementById('footer');
+  const footerParent = document.getElementById('main-footer');
 
   // Append the cloned nodes to the parent containers
   headerParent.appendChild(headerElement);
