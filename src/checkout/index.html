@@ -9,6 +9,7 @@
     <title>Sleep Outside | Checkout</title>
 
     <link rel="stylesheet" href="css/style.css" />
+    <script src="../js/checkout.js" type='module'></script>
   </head>
 
   <body>
@@ -24,6 +25,7 @@
         <form name="checkout">
           <fieldset>
             <legend>Customer Name</legend>
+            <label for="fname">First Name</label>
             <input name="fname" type="text" required>
             <input name="lname" type="text" required>
           </fieldset>
@@ -32,21 +34,28 @@
             <input name="street" type="text" required>
             <input name="city" type="text" required>
             <input name="state" type="text" required>
-            <input name="zip" type="text" required>
+            <input name="zip" type="text" id="zip" required>
           </fieldset>
           <fieldset>
             <legend>Payment</legend>
+            <label for="cardNumber">Card Number</label>
             <input name="cardNumber" type="number" required>
+            <label for="expiration">Expiration</label>
             <input name="expiration" required>
-            <input name="code" required>
+            <label for="code">Code</label>
+            <input name="code"  required>
           </fieldset>
-          <button>Check out</button>
+          <button id="checkoutBtn">Check out</button>
         </form>
       </section>
-      <section class="order summary">
+      <section class="order-summary">
+        <label for="subTotal">Item Subtotal</label>
         <p id="subTotal"></p>
+        <label for="shipping">Shipping Cost</label>
         <p id="shipping"></p>
+        <label for="tax">Tax</label>
         <p id="tax"></p>
+        <label for="orderTotal">Order Total</label>
         <p id="orderTotal"></p>  
       </section>
     
