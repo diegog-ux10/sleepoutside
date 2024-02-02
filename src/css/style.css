@@ -302,3 +302,24 @@ footer {
   border-radius: 50%;
   font-weight: bold;
 }
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  max-width: 800px;
+  margin: 50px auto;
+}
+
+.category-box {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.3s ease-in-out;
+}
+
+.category-box:hover {
+  transform: scale(1.05);
+}
