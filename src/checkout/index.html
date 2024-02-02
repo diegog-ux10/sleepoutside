@@ -24,29 +24,30 @@
         <form name="checkout">
           <fieldset>
             <legend>Customer Name</legend>
-            <input name="fname" type="text">
-            <input name="lname" type="text">
+            <input name="fname" type="text" required>
+            <input name="lname" type="text" required>
           </fieldset>
           <fieldset>
             <legend>Address</legend>
-            <input name="street address" type="text">
-            <input name="city" type="text">
-            <input name="state" type="text">
+            <input name="street" type="text" required>
+            <input name="city" type="text" required>
+            <input name="state" type="text" required>
+            <input name="zip" type="text" required>
           </fieldset>
           <fieldset>
             <legend>Payment</legend>
-            <input name="credit card number" type="number">
-            <input name="expiration date">
-            <input name="security code">
+            <input name="cardNumber" type="number" required>
+            <input name="expiration" required>
+            <input name="code" required>
           </fieldset>
           <button>Check out</button>
         </form>
       </section>
       <section class="order summary">
-        <p id="order 1"></p>
-        <p id="order 2"></p>
-        <p id="order 3"></p>
-        <p id="order 4"></p>  
+        <p id="subTotal"></p>
+        <p id="shipping"></p>
+        <p id="tax"></p>
+        <p id="orderTotal"></p>  
       </section>
     
     </main>
