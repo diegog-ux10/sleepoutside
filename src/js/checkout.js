@@ -1,7 +1,9 @@
 import CheckoutProcess from "./checkoutProcess.mjs";
-import { loadHeaderFooter } from './utils.mjs';
+import { loadHeaderFooter, alertMessage } from './utils.mjs';
 
 loadHeaderFooter();
+
+alertMessage();
 
 const checkout = new CheckoutProcess('so-cart', '.order-summary');
 
@@ -17,8 +19,13 @@ document.querySelector('#checkoutBtn').addEventListener('click', (e)=>{
     const myForm = document.forms[0];
     const chk_status = myForm.checkValidity();
     myForm.reportValidity();
-    if(chk_status)
-        checkout.checkout();
+    if(!chk_status) {
+        alertMessage('Please fill out all required fields.');
+        return;
+    }
+    checkout.checkout();
+    window.location.href = 'success.html';
+    localStorage.removeItem('so-cart');
 });
 
 
