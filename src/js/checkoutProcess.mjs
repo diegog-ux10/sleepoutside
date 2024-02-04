@@ -88,6 +88,21 @@ export default class CheckoutProcess {
     formJSON.shipping = this.shipping;
     formJSON.items = packageItems(this.list);
     console.log(formJSON);
+
+    try {const res = await services.checkout(formjson);
+      console.log(res);
+      setLocalStorage("so-cart", []);
+      location.assign("/checkout/success.html");
+    } catch (err) {
+      // get rid of any preexisting alerts.
+      removeAllAlerts();
+      for (let message in err.message) {
+        alertMessage(err.message[message]);
+      }
+
+      console.log(err);
+    }
+
     // call the checkout method in our ExternalServices module and send it our data object.
     const res = await services.checkout(formJSON);
   }

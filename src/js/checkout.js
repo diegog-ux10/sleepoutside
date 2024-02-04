@@ -9,12 +9,16 @@ checkout.init();
 
 
 document.querySelector('#zip').addEventListener('blur', () => {
-    console.log('asd');
+    // console.log('asd');
     checkout.calculateOrdertotal();
 })
 document.querySelector('#checkoutBtn').addEventListener('click', (e)=>{
     e.preventDefault();
-    checkout.checkout();
-})
+    const myForm = document.forms[0];
+    const chk_status = myForm.checkValidity();
+    myForm.reportValidity();
+    if(chk_status)
+        checkout.checkout();
+});
 
 
