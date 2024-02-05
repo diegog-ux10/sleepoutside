@@ -9,9 +9,9 @@ loadHeaderFooter();
 shoppingCart.init();
 
 const checkout = document.querySelector('.checkoutbtn');
-      
-checkout.addEventListener('click', function() {
-    const checkoutAddress = '/checkout/index.html';
 
-    window.location = checkoutAddress;
+checkout.addEventListener('click', function () {
+  const checkoutAddress = '/checkout/index.html';
+
+  window.location = checkoutAddress;
 });
