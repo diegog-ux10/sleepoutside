@@ -123,31 +123,28 @@ button {
   padding-left: 0;
 }
 
-.product-grid>li {
+.product-grid > li {
   width: 150px;
   /* border: 1px solid var(--light-grey); */
   padding: 0.5em;
   margin: 1em;
 }
-
 .product-grid h2 {
   margin: 0;
 
   font-size: 1.2em;
 }
-
 .product-grid a {
   text-decoration: none;
 }
-
 .product-grid a:link,
 .product-grid a:visited {
   color: var(--dark-grey);
 }
-
 .product-grid a:hover {
   text-decoration: underline;
 }
+
 .mission {
   padding: 0 0.5em;
   /* margin: 0.5em 0; */

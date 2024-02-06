@@ -8,7 +8,8 @@
 
     <title>Sleep Outside | Checkout</title>
 
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <script src="../js/checkout.js" type="module"></script>
   </head>
 
   <body>
@@ -17,9 +18,53 @@
     </header>
 
     <main class="divider">
+      <div></div>
       <section class="products">
         <h2>Review & Place your Order</h2>
       </section>
+      <section class="checkout form"></section>
+        <form name="checkout">
+          <fieldset>
+            <legend>Customer Name</legend>
+            <label for="fname">First Name</label>
+            <input name="fname" id="fname" type="text" required>
+            <label for="lname">Last Name</label>
+            <input name="lname" id="lname" type="text" required>
+          </fieldset>
+          <fieldset>
+            <legend>Address</legend>
+            <label for="street">Street</label>
+            <input name="street" id="street" type="text" required>
+            <label for="city">City</label>
+            <input name="city" id="city" type="text" required>
+            <label for="state">State</label>
+            <input name="state" id="state" type="text" required>
+            <label for="zip">ZIP Code</label>
+            <input name="zip" id="zip" type="text" id="zip" pattern="\d{5}" placeholder="ex 12345" required>
+          </fieldset>
+          <fieldset>
+            <legend>Payment</legend>
+            <label for="cardNumber">Card Number</label>
+            <input name="cardNumber" type="text" id="cardNumber" pattern="\d{16}" maxlength="16" required>
+            <label for="expiration">Expiration</label>
+            <input name="expiration" id="expiration" type="text" pattern="^(0[1-9]|1[0-2])\/\d{2}$" placeholder="MM/YY" required>
+            <label for="code">Code</label>
+            <input name="code" id="code" pattern="\d{3}" placeholder="ex 123" required>
+          </fieldset>
+          <button id="checkoutBtn">Checkout</button>
+        </form>
+      </section>
+      <section class="order-summary">
+        <label for="subTotal">Item Subtotal</label>
+        <p id="subTotal"></p>
+        <label for="shipping">Shipping Cost</label>
+        <p id="shipping"></p>
+        <label for="tax">Tax</label>
+        <p id="tax"></p>
+        <label for="orderTotal">Order Total</label>
+        <p id="orderTotal"></p>  
+      </section>
+    
     </main>
 
     <footer id="main-footer"></footer>
