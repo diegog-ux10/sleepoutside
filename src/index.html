@@ -77,7 +77,50 @@
           </a>
         </div>
       </section>
+
+      <form id="subscriptionForm">
+        <div class="container">
+          <h2>Subscribe to our Newsletter</h2>
+        </div>
+
+        <div class="container" style="background-color: white">
+          <!-- Your form fields go here -->
+          <input type="text" placeholder="Name: John" name="name" required />
+          <input
+            type="text"
+            placeholder="surname: Doe"
+            name="surname"
+            required
+          />
+          <input
+            type="text"
+            placeholder="Email: johndoe@gmail.com"
+            name="email"
+            required
+          />
+
+          <div class="checkbox-container">
+            <label>
+              <input
+                class="subscribe"
+                type="checkbox"
+                checked="checked"
+                name="subscribe"
+              />
+              Send me the Newsletter
+            </label>
+          </div>
+        </div>
+
+        <div class="container">
+          <button type="button" id="subscribeButton">Subscribe</button>
+        </div>
+        <div id="subscriptionMessage" class="container">
+          You have subscribed successfully!
+        </div>
+      </form>
     </main>
+    <br />
     <footer id="main-footer"></footer>
   </body>
 </html>
